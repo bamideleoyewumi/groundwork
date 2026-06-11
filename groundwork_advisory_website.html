@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groundwork Advisory — Development Communications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0E1A14;
+    --teal: #0C6649;
+    --teal-mid: #1D9E75;
+    --teal-light: #E4F4ED;
+    --teal-pale: #F2FAF6;
+    --sand: #F6F3EE;
+    --white: #FFFFFF;
+    --mist: #F0EDE8;
+    --mid: #4A5550;
+    --light: #8A9690;
+    --border: #D8E2DD;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 6vw;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 400; color: var(--mid);
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500;
+    padding: 9px 20px;
+    background: var(--teal); color: var(--white) !important;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #0a5238 !important; color: var(--white) !important; }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 6vw; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--ink);
+    letter-spacing: -1.5px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.8px;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  p { color: var(--mid); line-height: 1.75; font-size: 15px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 120px;
+    background: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: linear-gradient(135deg, var(--teal-light) 0%, var(--teal-pale) 60%, var(--sand) 100%);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; width: 100%; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .hero-left { }
+  .hero-tagline {
+    font-size: 14px; font-weight: 400; color: var(--teal);
+    border-left: 2px solid var(--teal); padding-left: 12px;
+    margin-bottom: 28px; font-family: var(--serif); font-style: italic;
+  }
+  .hero-title { margin-bottom: 28px; }
+  .hero-title em { color: var(--teal); font-style: italic; }
+  .hero-desc { font-size: 17px; color: var(--mid); margin-bottom: 40px; max-width: 480px; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--teal); color: var(--white);
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #0a5238; }
+  .btn-ghost {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid var(--teal); color: var(--teal);
+    font-size: 14px; font-weight: 400;
+    text-decoration: none; border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: var(--teal); color: var(--white); }
+  .hero-right { }
+  .hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .hero-stat {
+    background: var(--white);
+    padding: 28px 24px;
+  }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 40px; font-weight: 400; color: var(--teal);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .hero-stat-label { font-size: 13px; color: var(--mid); line-height: 1.4; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--teal);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-item {
+    font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0 40px;
+  }
+  .ticker-dot { color: rgba(255,255,255,0.4); }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── INTRO ── */
+  #intro {
+    background: var(--white);
+    padding: 96px 6vw;
+  }
+  .intro-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start;
+  }
+  .intro-left { }
+  .intro-right { }
+  .intro-pull {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+    margin-bottom: 28px;
+  }
+  .intro-pull em { color: var(--teal); font-style: italic; }
+  .founder-card {
+    display: flex; gap: 16px; align-items: center;
+    padding: 20px; background: var(--teal-pale);
+    border-radius: 8px; margin-top: 32px;
+    border: 1px solid var(--teal-light);
+  }
+  .founder-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--teal); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--serif); font-size: 20px; color: var(--white);
+  }
+  .founder-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .founder-role { font-size: 12px; color: var(--teal); margin-top: 2px; }
+  .founder-bio { font-size: 13px; color: var(--mid); margin-top: 4px; line-height: 1.5; }
+
+  /* ── PROBLEM ── */
+  #problem {
+    background: var(--ink);
+    padding: 96px 6vw;
+  }
+  #problem .eyebrow { color: var(--teal-mid); }
+  #problem h2 { color: var(--white); }
+  #problem .section-sub { color: rgba(255,255,255,0.55); margin-top: 16px; max-width: 560px; font-size: 16px; }
+  .problem-inner { max-width: 1200px; margin: 0 auto; }
+  .problem-header { margin-bottom: 56px; }
+  .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+  .problem-card {
+    background: rgba(255,255,255,0.04);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .problem-card:hover { background: rgba(255,255,255,0.07); }
+  .problem-who { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal-mid); font-weight: 500; margin-bottom: 12px; }
+  .problem-card h3 { font-family: var(--serif); font-size: 20px; color: var(--white); font-weight: 400; margin-bottom: 12px; }
+  .problem-card p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
+
+  /* ── SERVICES ── */
+  #services {
+    background: var(--sand);
+    padding: 96px 6vw;
+  }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+  .services-header p { font-size: 16px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .service-card {
+    background: var(--white);
+    padding: 36px 28px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--teal-pale); }
+  .service-num { font-family: var(--serif); font-size: 13px; color: var(--teal); font-style: italic; margin-bottom: 20px; display: block; }
+  .service-card h3 { font-size: 17px; font-family: var(--serif); font-weight: 400; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .service-card p { font-size: 13px; color: var(--mid); line-height: 1.65; }
+  .service-tag {
+    display: inline-block; margin-top: 16px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal); font-weight: 500;
+  }
+
+  /* ── APPROACH ── */
+  #approach {
+    background: var(--white);
+    padding: 96px 6vw;
+  }
+  .approach-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .approach-left { position: sticky; top: 100px; }
+  .approach-steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex; gap: 20px; padding-bottom: 40px;
+    position: relative;
+  }
+  .step::before {
+    content: '';
+    position: absolute; left: 19px; top: 40px;
+    width: 1px; height: calc(100% - 40px);
+    background: var(--border);
+  }
+  .step:last-child::before { display: none; }
+  .step-dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--teal-pale); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--serif); font-size: 14px; color: var(--teal); font-style: italic;
+  }
+  .step-body h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .step-body p { font-size: 14px; }
+
+  /* ── SECTORS ── */
+  #sectors {
+    background: var(--teal);
+    padding: 96px 6vw;
+  }
+  .sectors-inner { max-width: 1200px; margin: 0 auto; }
+  #sectors .eyebrow { color: rgba(255,255,255,0.6); }
+  #sectors h2 { color: var(--white); margin-bottom: 12px; }
+  #sectors .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 56px; font-size: 16px; max-width: 520px; }
+  .sectors-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px;
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+    transition: all 0.2s; cursor: default;
+  }
+  .pill:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+  /* ── CLIENTS ── */
+  #clients {
+    background: var(--sand);
+    padding: 80px 6vw;
+  }
+  .clients-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+  .clients-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--light); margin-bottom: 40px; }
+  .clients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .client-group {
+    background: var(--white);
+    border-radius: 8px; border: 1px solid var(--border);
+    padding: 28px 24px; text-align: left;
+  }
+  .client-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); font-weight: 500; margin-bottom: 12px; }
+  .client-names { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+  /* ── EDGE ── */
+  #edge {
+    background: var(--white);
+    padding: 96px 6vw;
+  }
+  .edge-inner { max-width: 1200px; margin: 0 auto; }
+  .edge-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+  .edge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .edge-card {
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .edge-card:hover { border-color: var(--teal-mid); background: var(--teal-pale); }
+  .edge-icon { font-size: 24px; margin-bottom: 16px; display: block; }
+  .edge-card h3 { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .edge-card p { font-size: 14px; }
+
+  /* ── FOUNDER SECTION ── */
+  #founder {
+    background: var(--mist);
+    padding: 96px 6vw;
+  }
+  .founder-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: center; }
+  .founder-photo {
+    aspect-ratio: 4/5;
+    background: var(--teal-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .founder-photo-placeholder {
+    font-family: var(--serif); font-size: 80px;
+    color: var(--teal); opacity: 0.4;
+  }
+  .founder-content .eyebrow { margin-bottom: 8px; }
+  .founder-content h2 { margin-bottom: 8px; }
+  .founder-title { font-size: 15px; color: var(--teal); margin-bottom: 28px; }
+  .founder-bio-long { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+  .cred-list { display: flex; flex-direction: column; gap: 10px; }
+  .cred-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; color: var(--mid);
+  }
+  .cred-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-top: 7px; flex-shrink: 0; }
+
+  /* ── CTA ── */
+  #contact {
+    background: var(--ink);
+    padding: 96px 6vw;
+    text-align: center;
+  }
+  .contact-inner { max-width: 680px; margin: 0 auto; }
+  #contact .eyebrow { color: var(--teal-mid); }
+  #contact h2 { color: var(--white); margin-bottom: 20px; }
+  #contact p { color: rgba(255,255,255,0.55); font-size: 17px; margin-bottom: 48px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .contact-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 24px;
+    text-align: left;
+  }
+  .contact-card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .contact-card-value { font-size: 15px; color: var(--white); font-weight: 400; }
+  .contact-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--white); color: var(--ink);
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .btn-white:hover { background: var(--teal-light); }
+  .btn-outline-white {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+    font-size: 14px; font-weight: 400;
+    text-decoration: none; border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-outline-white:hover { border-color: var(--white); color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080F0C;
+    padding: 40px 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: var(--serif); font-size: 16px; color: rgba(255,255,255,0.5); }
+  .footer-logo span { color: var(--teal-mid); }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner, .intro-inner, .services-header, .approach-inner,
+    .founder-inner, .edge-header { grid-template-columns: 1fr; gap: 40px; }
+    .problem-grid, .services-grid, .clients-grid, .edge-grid,
+    .contact-cards { grid-template-columns: 1fr; }
+    #hero::before { display: none; }
+    .nav-links { display: none; }
+    .approach-left { position: static; }
+    .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-inner { animation: none; }
+    * { transition: none !important; }
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Groundwork<span>.</span></a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#sectors">Sectors</a>
+    <a href="#approach">Approach</a>
+    <a href="#founder">About</a>
+    <a href="#contact" class="nav-cta">Work with us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-tagline">Development Communications Advisory</p>
+      <h1 class="hero-title">
+        Strategy that<br>
+        <em>reaches</em><br>
+        communities
+      </h1>
+      <p class="hero-desc">We help development organizations, government agencies, and NGOs build communication strategies that actually change behavior, not just inform.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Our services</a>
+        <a href="#contact" class="btn-ghost">Start a conversation</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <div class="hero-stat-num">7+</div>
+          <div class="hero-stat-label">Years embedded in development programs across Nigeria</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Thematic areas from SRH to climate resilience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">∅</div>
+          <div class="hero-stat-label">Generalist agencies with our depth of sector experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">1st</div>
+          <div class="hero-stat-label">BCC-led development advisory with FMoH government access</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" role="marquee" aria-label="Services offered">
+  <div class="ticker-inner">
+    <span class="ticker-item">Behavioral Change Communication <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Advocacy & Policy Communication <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Campaign Design <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Donor Visibility <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Government Stakeholder Engagement <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">ESG Narrative & Reputation <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Behavioral Change Communication <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Advocacy & Policy Communication <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Campaign Design <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Donor Visibility <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">Government Stakeholder Engagement <span class="ticker-dot">·</span></span>
+    <span class="ticker-item">ESG Narrative & Reputation <span class="ticker-dot">·</span></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-inner">
+    <div class="intro-left reveal">
+      <span class="eyebrow">Who we are</span>
+      <h2>Not a communications agency.<br>A strategic partner.</h2>
+    </div>
+    <div class="intro-right reveal">
+      <p class="intro-pull">Most development programs <em>fail to reach communities</em> not because the strategy was wrong, but because communication was designed for the donor report, not the behavior change.</p>
+      <p>We are a strategic communications and social impact advisory working at the intersection of behavior change science, policy communication, and development sector strategy. We don't produce materials and hand them over. We shape the thinking that determines whether your program reaches anyone at all.</p>
+      <p style="margin-top: 16px;">Seven years inside programs, at HACEY, the Federal Ministry of Health, across 25 states means we've seen how programs fail from the inside. That's the knowledge we bring to every engagement.</p>
+      <div class="founder-card">
+        <div class="founder-avatar">B</div>
+        <div>
+          <div class="founder-name">Bamidele Oyewumi</div>
+          <div class="founder-role">Founder, Groundwork Advisory</div>
+          <div class="founder-bio">Program specialist · FMoH National Health Fellow · MSc Public Health 
+	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="problem-inner">
+    <div class="problem-header reveal">
+      <span class="eyebrow">The problem we solve</span>
+      <h2>Your program is good.<br>The communication isn't designed for it.</h2>
+      <p class="section-sub">The same failure appears in every sector: communication arrives too late, targets the wrong audience, and measures the wrong thing.</p>
+    </div>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-who">NGOs & Implementers</div>
+        <h3>Writing for donors, not communities</h3>
+        <p>Brilliant programs fail to reach people because the communication was designed for a funding report, not a behavioral shift. The message framework reflects what the funder wants to prove, not what the community needs to hear.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-who">Government MDAs</div>
+        <h3>Campaigns with no behavior change theory</h3>
+        <p>Information is shared. Jingles are funded. Radio spots air. But there was never a question asked about why the community is doing what they're doing, or what it would actually take to change it.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-who">Development Partners</div>
+        <h3>Generalist agencies without sector depth</h3>
+        <p>Local firms produce materials without understanding the program. International agencies understand the theory but not the community. The result: beautiful visibility. Zero behavior change.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-who">Corporates & ESG</div>
+        <h3>Real work, communicated like a compliance document</h3>
+        <p>Strong CSR programs are buried in annual reports that no stakeholder reads. The work exists. The credibility doesn't, because the narrative was never engineered for the audience it needed to reach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <h2>What we do</h2>
+      <p style="font-size: 16px;">Six service areas, all anchored to the same discipline: strategy designed for behavior change, not for visibility alone.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <h3>Behavioral Change Communication Strategy</h3>
+        <p>Research-led BCC strategies designed from theory of change, not brand guidelines. Audience segmentation, barrier analysis, message testing, channel mapping.</p>
+        <span class="service-tag">Core service</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <h3>Advocacy & Policy Communication</h3>
+        <p>Translating technical policy positions into public narratives, stakeholder engagement roadmaps, and civil society coalitions that move legislation and institutional decisions.</p>
+        <span class="service-tag">Policy</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <h3>Campaign Design</h3>
+        <p>End-to-end campaign strategy for health, gender, and climate programs, from community insight and message development to channel selection and activation planning.</p>
+        <span class="service-tag">Campaigns</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <h3>Donor Visibility & Impact Reporting</h3>
+        <p>Program visibility strategies and donor-facing materials that tell compelling impact stories while meeting accountability requirements, without losing the community's voice.</p>
+        <span class="service-tag">Reporting</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <h3>Government Stakeholder Engagement</h3>
+        <p>Engagement frameworks for programs requiring MDA coordination, regulatory alignment, or ministerial buy-in. Built from direct experience of how government communication works.</p>
+        <span class="service-tag">Government</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <h3>ESG Narrative & Reputation</h3>
+        <p>For corporates: ESG story development, materiality framing, annual impact report narratives, and stakeholder communication that turns genuine CSR work into credible public narrative.</p>
+        <span class="service-tag">Corporate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="approach-inner">
+    <div class="approach-left reveal">
+      <span class="eyebrow">Our approach</span>
+      <h2>We start with behavior,<br>not brief.</h2>
+      <p style="margin-top: 20px; font-size: 16px;">Before any strategy is written, we ask: why is this community doing what they're doing and what would it actually take to change that? That question drives everything.</p>
+    </div>
+    <div class="approach-steps reveal">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <div class="step-body">
+          <h3>Formative research first</h3>
+          <p>Audience segmentation, barrier analysis, message testing, and channel mapping based on where communities actually receive and trust information, not where it's cheapest to broadcast.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <div class="step-body">
+          <h3>Strategy before production</h3>
+          <p>Communication strategy is designed in the program design phase, not bolted on at the end. That means the brief, the budget allocation, and the theory of change all align before any material is produced.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <div class="step-body">
+          <h3>Human-centered, community-rooted</h3>
+          <p>Every strategy is built around community reality, not donor preference. We've worked in the communities our clients serve. That shapes how we design for them.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <div class="step-body">
+          <h3>Measurable behavioral indicators</h3>
+          <p>We define what behavioral change looks like before engagement begins, so impact can be tracked, not just reach. You'll know whether the communication is working at six months, not at year-end reporting.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">5</div>
+        <div class="step-body">
+          <h3>Embedded, not handed over</h3>
+          <p>We work alongside program teams rather than delivering and disappearing. Strategy that lives inside the program produces better outcomes than strategy that arrives in a document.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors">
+  <div class="sectors-inner">
+    <div class="reveal">
+      <span class="eyebrow">Sectors we serve</span>
+      <h2>Depth across the issues<br>that matter most</h2>
+      <p class="section-sub">Our cross-thematic experience means we can serve integrated programs that single-sector specialists cannot.</p>
+    </div>
+    <div class="sectors-pills reveal">
+      <span class="pill">Sexual & Reproductive Health</span>
+      <span class="pill">Maternal & Newborn Health</span>
+      <span class="pill">Gender-Based Violence Prevention</span>
+      <span class="pill">Women's Economic Empowerment</span>
+      <span class="pill">Financial Inclusion</span>
+      <span class="pill">Climate Resilience</span>
+      <span class="pill">Environmental Advocacy</span>
+      <span class="pill">Youth Development</span>
+      <span class="pill">Digital Inclusion</span>
+      <span class="pill">Public Health & Nutrition</span>
+      <span class="pill">Family Planning</span>
+      <span class="pill">ESG & Corporate Sustainability</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="clients-inner">
+    <p class="clients-label">Organizations we work with</p>
+    <div class="clients-grid reveal">
+      <div class="client-group">
+        <div class="client-type">International NGOs</div>
+        <div class="client-names">Plan International · ActionAid · WaterAid · Marie Stopes · MSI Reproductive Choices</div>
+      </div>
+      <div class="client-group">
+        <div class="client-type">Bilateral donors & implementers</div>
+        <div class="client-names">USAID · FCDO · EU · GIZ · Palladium · DAI · Chemonics · FHI 360</div>
+      </div>
+      <div class="client-group">
+        <div class="client-type">UN Agencies</div>
+        <div class="client-names">UNFPA · UN Women · UNICEF · WHO</div>
+      </div>
+      <div class="client-group">
+        <div class="client-type">Government MDAs</div>
+        <div class="client-names">Federal Ministry of Health · Federal Ministry of Women Affairs · NPHCDA · State Ministries of Health</div>
+      </div>
+      <div class="client-group">
+        <div class="client-type">Civil society</div>
+        <div class="client-names">Women's rights coalitions · Health advocacy networks · Climate & environmental organizations</div>
+      </div>
+      <div class="client-group">
+        <div class="client-type">ESG-driven corporates</div>
+        <div class="client-names">Banking sector · FMCG firms · Energy companies · Impact-reporting listed organizations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDGE -->
+<section id="edge">
+  <div class="edge-inner">
+    <div class="edge-header reveal">
+      <h2>Why Groundwork Advisory</h2>
+      <p style="font-size: 16px;">Every communications firm says they understand the sector. We've lived inside it for seven years. That's not a positioning statement, it's the reason our strategies work.</p>
+    </div>
+    <div class="edge-grid reveal">
+      <div class="edge-card">
+        <span class="edge-icon">🌱</span>
+        <h3>Sector-embedded credibility</h3>
+        <p>Seven years running programs at HACEY, the Federal Ministries, and across twenty-five Nigerian states. We know how development programs fail from the inside, not from a consultant's report.</p>
+      </div>
+      <div class="edge-card">
+        <span class="edge-icon">🏛️</span>
+        <h3>Government access and fluency</h3>
+        <p>Direct Federal Ministry of Health experience means we understand the political constraints, bureaucratic realities, and institutional relationships that shape what messaging is possible and what isn't.</p>
+      </div>
+      <div class="edge-card">
+        <span class="edge-icon">🧠</span>
+        <h3>Behavior change as a discipline</h3>
+        <p>We design BCC from theory of change, not from a creative brief. That's a fundamentally different product. It produces strategies that actually shift behavior, not strategies that produce visibility metrics.</p>
+      </div>
+      <div class="edge-card">
+        <span class="edge-icon">🔗</span>
+        <h3>Cross-thematic portfolio</h3>
+        <p>SRH + GBV + climate + financial inclusion in a single firm means we serve integrated programs that single-sector specialists cannot. As development programs increasingly span themes, this matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="founder-inner">
+    <div class="founder-photo reveal">
+      <div class="founder-photo-placeholder">B</div>
+    </div>
+    <div class="founder-content reveal">
+      <span class="eyebrow">The founder</span>
+      <h2>Bamidele Oyewumi</h2>
+      <p class="founder-title">Development sector specialist & strategic communications advisor</p>
+      <p class="founder-bio-long">I built Groundwork Advisory because I kept seeing the same failure across every program I worked on: communication treated as a delivery mechanism rather than a strategic discipline. The programs were good. The communication wasn't designed for them.</p>
+      <p class="founder-bio-long">Seven years running programs across Nigeria, at HACEY, inside the Federal Ministry of Health as a National Health Fellow, and across communities in over 25 states, gave me a view of development communication that most consultants never get. I've been in the ministry, in the community, and in the donor meeting. I understand all three worlds.</p>
+      <div class="cred-list">
+        <div class="cred-item"><div class="cred-dot"></div><span>Program Team Lead, HACEY (Health, Access, Climate & Equity), 2020–present</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>National Health Fellow, Federal Ministry of Health, Feb 2025–Feb 2026</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>Program Manager, Private Sector Engagement, FMoH, 2023–2024</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>MSc Public Health (in progress), University of Lagos</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>BSc Economics, Ajayi Crowther University, 2024</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>UN General Assembly side event speaker on women's health and economic inclusion</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>COP29 contributor on equitable climate solutions for women, children, and youth in Nigeria</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <div class="contact-inner">
+    <span class="eyebrow">Let's work together</span>
+    <h2>Whether you're designing a program, influencing policy, or scaling impact</h2>
+    <p>We partner with you from strategy to delivery. If your organization is planning work in health, gender, climate, or financial inclusion, and you want the communication to actually do something, let's talk.</p>
+    <div class="contact-cards reveal">
+      <div class="contact-card">
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value">groundworkadvisory26@gmail.com</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Phone</div>
+        <div class="contact-card-value">+234 816 319 0213</div>
+      </div>
+    </div>
+    <div class="contact-cta reveal">
+      <a href="mailto:groundworkadvisory26@gmail.com" class="btn-white">Send an email</a>
+      <a href="tel:+2348163190213" class="btn-outline-white">Call us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Groundwork<span>.</span></div>
+  <p>© 2026 Groundwork Advisory · Lagos, Nigeria · Where strategy meets community</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = '';
+      if (a.getAttribute('href') === '#' + current) a.style.color = 'var(--teal)';
+    });
+  });
+</script>
+
+</body>
+</html>
